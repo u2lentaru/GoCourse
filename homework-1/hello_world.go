@@ -7,6 +7,7 @@ func main() {
 	Conv()
 }
 
+// Conv()
 func Conv() {
 	var rsum int8
 	const scrs int8 = 64
