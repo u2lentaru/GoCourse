@@ -11,8 +11,8 @@ func main() {
 
 //Выводит сумму в $
 func currConv() {
-	var rsum int
-	const scrs int = 64
+	var rsum float64
+	const scrs float64 = 64
 	fmt.Println("Сумма в рублях?")
 	fmt.Scanln(&rsum)
 	fmt.Println("Сумма $", rsum/scrs)
