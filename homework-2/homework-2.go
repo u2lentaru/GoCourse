@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	parityChecking()
-	divByTreeChicking()
+	divByTreeChecking()
 	seqFibonacci100()
 }
 
@@ -21,7 +21,7 @@ func parityChecking() {
 }
 
 //Проверка деления на 3
-func divByTreeChicking() {
+func divByTreeChecking() {
 	var i int
 	fmt.Println("Введите число для проверки")
 	fmt.Scanln(&i)
