@@ -10,3 +10,4 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+homework-2/__debug_bin
