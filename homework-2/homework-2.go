@@ -11,7 +11,7 @@ func main() {
 //Проверка чётности
 func parityChecking() {
 	var i int
-	fmt.Println("Введите число для проверки")
+	fmt.Println("Введите число для проверки чётности")
 	fmt.Scanln(&i)
 	if i%2 == 0 {
 		fmt.Println(i, "чётное")
@@ -23,7 +23,7 @@ func parityChecking() {
 //Проверка деления на 3
 func divByTreeChecking() {
 	var i int
-	fmt.Println("Введите число для проверки")
+	fmt.Println("Введите число для проверки деления на 3")
 	fmt.Scanln(&i)
 	if i%3 == 0 {
 		fmt.Println(i, "делится на 3 без остатка")
@@ -40,9 +40,8 @@ func seqFibonacci100() {
 		}
 	}()
 	fmt.Println("1 число Фибоначчи 1")
-	fmt.Println("2 число Фибоначчи 1")
-	fnumb := 2
-	fib(1, 1, &fnumb)
+	fnumb := 1
+	fib(0, 1, &fnumb)
 }
 
 //рекурсия
