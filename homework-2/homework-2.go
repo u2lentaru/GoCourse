@@ -36,22 +36,22 @@ func divByTreeChecking() {
 func seqFibonacci100() {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println(r)
+			//		fmt.Println(r)
 		}
 	}()
 	fmt.Println("1 число Фибоначчи 1")
 	fmt.Println("2 число Фибоначчи 1")
-	var fnumb uint64 = 2
+	var fnumb float64 = 2
 	fib(1, 1, &fnumb)
 }
 
 //рекурсия
-func fib(f1, f2 uint64, pfnumb *uint64) {
+func fib(f1, f2 float64, pfnumb *float64) {
 	f := f1
 	f1 = f2
 	f2 = f + f1
-	fmt.Println(*pfnumb, "число Фибоначчи", f2)
 	*pfnumb++
+	fmt.Println(*pfnumb, "число Фибоначчи", f2)
 	if *pfnumb >= 100 {
 		panic(*pfnumb)
 	}
