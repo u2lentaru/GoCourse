@@ -6,6 +6,7 @@ func main() {
 	parityChecking()
 	divByTreeChecking()
 	seqFibonacci100()
+	sieve()
 }
 
 //Проверка чётности
@@ -44,7 +45,7 @@ func seqFibonacci100() {
 	fib(0, 1, &fnumb)
 }
 
-//рекурсия
+//рекурсия (float64, в uint64 не помещается)
 func fib(f1, f2 float64, pfnumb *int) {
 	f := f1
 	f1 = f2
@@ -55,4 +56,33 @@ func fib(f1, f2 float64, pfnumb *int) {
 		panic(*pfnumb)
 	}
 	fib(f1, f2, pfnumb)
+}
+
+//решето Эратосфена
+func sieve() {
+	//541 - сотое простое число
+	const maxVal = 542
+	var arr [maxVal]int
+	var primeNumbers [100]int
+	for i := 1; i < maxVal; i++ {
+		arr[i] = i
+	}
+	for i := 2; i < maxVal; i++ {
+		if arr[i] == 0 {
+			continue
+		}
+		for p := i + 1; p < maxVal; p++ {
+			if p%i == 0 {
+				arr[p] = 0
+			}
+		}
+	}
+	p := 0
+	for i := 2; i < maxVal; i++ {
+		if (arr[i] > 0) && (p < 100) {
+			primeNumbers[p] = arr[i]
+			fmt.Println(p+1, primeNumbers[p])
+			p++
+		}
+	}
 }
