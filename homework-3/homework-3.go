@@ -39,14 +39,13 @@ func testingQueue() {
 
 	queue.Push("1")
 	queue.Push("2")
+
+	fmt.Println(queue.Pop())
+
 	queue.Push("3")
 
 	fmt.Println(queue.Pop())
 	fmt.Println(queue.Pop())
-
-	queue.Push("4")
-	queue.Push("5")
-
 	fmt.Println(queue.Pop())
 }
 
@@ -57,5 +56,6 @@ Checking a==c false
 1
 2
 3
+
 Process exiting with code: 0
 */
