@@ -4,12 +4,12 @@ import "fmt"
 import "GoCourse/homework-3/queue"
 
 func main() {
-	carsAndTrucksStracts()
+	carsAndTrucksStructs()
 	testingQueue()
 }
 
 //Creating, modification and comparing cars and trucks data structures
-func carsAndTrucksStracts() {
+func carsAndTrucksStructs() {
 
 	type car struct {
 		model string
