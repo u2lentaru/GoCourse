@@ -8,7 +8,7 @@ func main() {
 	testingQueue()
 }
 
-//Creating, modification and comparing cars and trucks data structures
+//Creating, modifying and comparing cars and trucks data structures
 func carsAndTrucksStructs() {
 
 	type car struct {
