@@ -6,7 +6,7 @@ func main() {
 	carsAndTrucksStracts()
 }
 
-//Creating and comparing cars and trucks data structures
+//Creating, modification and comparing cars and trucks data structures
 func carsAndTrucksStracts() {
 
 	type car struct {
@@ -28,6 +28,6 @@ func carsAndTrucksStracts() {
 
 	t.loadCapacity = 16000
 	fmt.Println(t, a.color)
-	fmt.Println("a==b", a == b)
-	fmt.Println("a==c", a == c)
+	fmt.Println("Checking a==b", a == b)
+	fmt.Println("Checking a==c", a == c)
 }
