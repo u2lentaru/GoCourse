@@ -58,14 +58,14 @@ func testingQueue() {
 func jsonAddressBook() {
 
 	addressBook := make(map[string][]int)
-	addressBook["Bob"] = []int{89167243812}
-	addressBook["Bob"] = append(addressBook["Bob"], 89155243627)
+	addressBook["Bob2"] = []int{89167243813}
+	addressBook["Bob2"] = append(addressBook["Bob2"], 89155243628)
 
 	b, err := json.Marshal(addressBook)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(b)
+	fmt.Println("json for write in file", b)
 
 	err = ioutil.WriteFile("AddressBook.json", b, 0644)
 	if err != nil {
@@ -77,12 +77,13 @@ func jsonAddressBook() {
 		fmt.Println(rerr)
 	}
 
-	fmt.Println(rcontent)
-	fmt.Println(string(rcontent))
+	fmt.Println("json read from file", rcontent)
+	fmt.Println("string(json) read from file", string(rcontent))
 
 }
 
 /*
+API server listening at: 127.0.0.1:40420
 {Volvo 2014 16000} white
 Checking a==b true
 Checking a==c false
@@ -90,5 +91,8 @@ Checking a==c false
 2
 3
 
+json for write in file [123 34 66 111 98 50 34 58 91 56 57 49 54 55 50 52 51 56 49 51 44 56 57 49 53 53 50 52 51 54 50 56 93 125]
+json read from file [123 34 66 111 98 50 34 58 91 56 57 49 54 55 50 52 51 56 49 51 44 56 57 49 53 53 50 52 51 54 50 56 93 125]
+string(json) read from file {"Bob2":[89167243813,89155243628]}
 Process exiting with code: 0
 */
