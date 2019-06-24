@@ -1,11 +1,16 @@
 package main
 
-import "fmt"
-import "GoCourse/homework-3/queue"
+import (
+	"GoCourse/homework-3/queue"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+)
 
 func main() {
 	carsAndTrucksStructs()
 	testingQueue()
+	jsonAddressBook()
 }
 
 //Creating, modifying and comparing cars and trucks data structures
@@ -47,6 +52,34 @@ func testingQueue() {
 	fmt.Println(queue.Pop())
 	fmt.Println(queue.Pop())
 	fmt.Println(queue.Pop())
+}
+
+//map addressBook->json->file
+func jsonAddressBook() {
+
+	addressBook := make(map[string][]int)
+	addressBook["Bob"] = []int{89167243812}
+	addressBook["Bob"] = append(addressBook["Bob"], 89155243627)
+
+	b, err := json.Marshal(addressBook)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(b)
+
+	err = ioutil.WriteFile("AddressBook.json", b, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	rcontent, rerr := ioutil.ReadFile("AddressBook.json")
+	if rerr != nil {
+		fmt.Println(rerr)
+	}
+
+	fmt.Println(rcontent)
+	fmt.Println(string(rcontent))
+
 }
 
 /*
