@@ -1,7 +1,7 @@
 package main
 
 import (
-	calculator "Calculator"
+	"calculator"
 	"fmt"
 )
 
