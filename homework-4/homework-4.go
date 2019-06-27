@@ -20,6 +20,7 @@ func calcCall() {
 
 		if input == "help" {
 			fmt.Println("Calculate рассчитывает данные выражения, переданного в строке")
+			continue
 		}
 
 		if input == "exit" {
