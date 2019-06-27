@@ -52,6 +52,7 @@ func (u utAddressBook) Less(i, j int) bool {
 }
 
 func sortAddressBook() {
+
 	u := utAddressBook{
 		{"Bob", []int{89167243814}},
 		{"Alex", []int{89155243629, 89155243630}},
@@ -72,7 +73,7 @@ func calcCall() {
 		}
 
 		if input == "help" {
-			fmt.Println("Calculate рассчитывает данные выражения, переданного в строке")
+			fmt.Println("Calculate рассчитывает данные выражения, переданного в строке. help - помощь, exit - выход.")
 			continue
 		}
 
@@ -87,3 +88,12 @@ func calcCall() {
 		}
 	}
 }
+
+//Hello from init
+//> 5+2
+//Результат: 7
+//> help
+//Calculate рассчитывает данные выражения, переданного в строке. help - помощь, exit - выход.
+//> exit
+//[{Bob [89167243814]} {Alex [89155243629 89155243630]}]
+//[{Alex [89155243629 89155243630]} {Bob [89167243814]}]
