@@ -33,9 +33,8 @@ func (c circle) perimeter() float64 {
 }
 
 type addressBook struct {
-	abName string
-	//	abPhones []int
-	abPhones int
+	abName   string
+	abPhones []int
 }
 
 type utAddressBook []addressBook
@@ -54,8 +53,8 @@ func (u utAddressBook) Less(i, j int) bool {
 
 func sortAddressBook() {
 	u := utAddressBook{
-		{"Bob", 89167243814},
-		{"Alex", 89155243629},
+		{"Bob", []int{89167243814}},
+		{"Alex", []int{89155243629, 89155243630}},
 	}
 
 	fmt.Println(u)
