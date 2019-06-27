@@ -52,14 +52,6 @@ func (u utAddressBook) Less(i, j int) bool {
 	return u[i].abName < u[j].abName
 }
 
-//addressBook := make(map[string][]int)
-//addressBook["Bob2"] = []int{89167243813}
-//addressBook["Bob2"] = append(addressBook["Bob2"], 89155243628)
-
-//func (a ByAge) Len() int           { return len(a) }
-//func (a ByAge) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-//func (a ByAge) Less(i, j int) bool { return a[i].Age < a[j].Age }
-
 func sortAddressBook() {
 	u := utAddressBook{
 		{"Bob", 89167243814},
@@ -69,11 +61,6 @@ func sortAddressBook() {
 	fmt.Println(u)
 	sort.Sort(utAddressBook(u))
 	fmt.Println(u)
-	//u[0].abName = "Alex"
-	//u[0].abPhones = [89167243813]
-	//u[1].abName = "Bob"
-	//u[1].abPhones = [89155243628]
-
 }
 
 func calcCall() {
