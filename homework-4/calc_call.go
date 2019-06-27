@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func calc_call() {
 	input := ""
 	for {
 		fmt.Print("> ")
