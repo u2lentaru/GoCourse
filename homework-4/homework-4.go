@@ -3,10 +3,31 @@ package main
 import (
 	"calculator"
 	"fmt"
+	"math"
 )
 
 func main() {
 	calcCall()
+}
+
+type perimeter interface {
+	perimeter() float64
+}
+
+type square struct {
+	edge float64
+}
+
+func (s square) perimeter() float64 {
+	return 4 * s.edge
+}
+
+type circle struct {
+	radius float64
+}
+
+func (c circle) perimeter() float64 {
+	return 2 * math.Pi * c.radius
 }
 
 func calcCall() {
