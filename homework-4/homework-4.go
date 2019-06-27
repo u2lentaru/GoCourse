@@ -18,6 +18,10 @@ func calcCall() {
 			continue
 		}
 
+		if input == "help" {
+			fmt.Println("Calculate рассчитывает данные выражения, переданного в строке")
+		}
+
 		if input == "exit" {
 			break
 		}
