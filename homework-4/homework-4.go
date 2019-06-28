@@ -119,7 +119,6 @@ func (cbp cbPoint) chessKnightPoints() []cbPoint {
 				if a.x >= 1 && a.x <= 8 && a.y >= 1 && a.y <= 8 {
 					mycbp = append(mycbp, a)
 				}
-
 			}
 		}
 
@@ -132,10 +131,8 @@ func (cbp cbPoint) chessKnightPoints() []cbPoint {
 func chessKnightMoves(kx, ky int) []cbPoint {
 
 	var ckp cbPoint
-	var sckp []cbPoint
 	ckp.setPoint(kx, ky)
-	sckp = ckp.chessKnightPoints()
-	return sckp
+	return ckp.chessKnightPoints()
 }
 
 //Hello from init
