@@ -51,6 +51,7 @@ func (u utAddressBook) Less(i, j int) bool {
 	return u[i].abName < u[j].abName
 }
 
+//Address book sorting
 func sortAddressBook() {
 
 	u := utAddressBook{
@@ -58,11 +59,12 @@ func sortAddressBook() {
 		{"Alex", []int{89155243629, 89155243630}},
 	}
 
-	fmt.Println(u)
+	fmt.Println("Befor sorting", u)
 	sort.Sort(utAddressBook(u))
-	fmt.Println(u)
+	fmt.Println("After sorting", u)
 }
 
+//Calculator calling
 func calcCall() {
 	input := ""
 	for {
@@ -73,7 +75,7 @@ func calcCall() {
 		}
 
 		if input == "help" {
-			fmt.Println("Calculate рассчитывает данные выражения, переданного в строке. help - помощь, exit - выход.")
+			fmt.Println("Program calculates the data of the expression passed in the string. type 'help' for help, 'exit' for exit.")
 			continue
 		}
 
@@ -82,18 +84,18 @@ func calcCall() {
 		}
 
 		if res, err := calculator.Calculate(input); err == nil {
-			fmt.Printf("Результат: %v\n", res)
+			fmt.Printf("Result: %v\n", res)
 		} else {
-			fmt.Println("Не удалось произвести вычисление")
+			fmt.Println("Could not calculate")
 		}
 	}
 }
 
 //Hello from init
-//> 5+2
-//Результат: 7
+//> 2+5
+//Result: 7
 //> help
-//Calculate рассчитывает данные выражения, переданного в строке. help - помощь, exit - выход.
+//Program calculates the data of the expression passed in the string. type 'help' for help, 'exit' for exit.
 //> exit
-//[{Bob [89167243814]} {Alex [89155243629 89155243630]}]
-//[{Alex [89155243629 89155243630]} {Bob [89167243814]}]
+//Befor sorting [{Bob [89167243814]} {Alex [89155243629 89155243630]}]
+//After sorting [{Alex [89155243629 89155243630]} {Bob [89167243814]}]
