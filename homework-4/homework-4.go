@@ -12,6 +12,8 @@ func main() {
 	sortAddressBook()
 }
 
+//New interface and several structures that satisfy it.
+
 type perimeter interface {
 	perimeter() float64
 }
@@ -32,6 +34,7 @@ func (c circle) perimeter() float64 {
 	return 2 * math.Pi * c.radius
 }
 
+//Address book structure and implementation of interface Sort{}
 type addressBook struct {
 	abName   string
 	abPhones []int
@@ -60,11 +63,11 @@ func sortAddressBook() {
 	}
 
 	fmt.Println("Befor sorting", u)
-	sort.Sort(utAddressBook(u))
+	sort.Sort(u)
 	fmt.Println("After sorting", u)
 }
 
-//Calculator calling
+//Calculator calling. Calculator repository https://github.com/u2lentaru/Calculator
 func calcCall() {
 	input := ""
 	for {
@@ -75,7 +78,7 @@ func calcCall() {
 		}
 
 		if input == "help" {
-			fmt.Println("Program calculates the data of the expression passed in the string. type 'help' for help, 'exit' for exit.")
+			fmt.Println("Program calculates the data of the expression passed in the string. Type 'help' for help, 'exit' for exit.")
 			continue
 		}
 
@@ -95,7 +98,7 @@ func calcCall() {
 //> 2+5
 //Result: 7
 //> help
-//Program calculates the data of the expression passed in the string. type 'help' for help, 'exit' for exit.
+//Program calculates the data of the expression passed in the string. Type 'help' for help, 'exit' for exit.
 //> exit
 //Befor sorting [{Bob [89167243814]} {Alex [89155243629 89155243630]}]
 //After sorting [{Alex [89155243629 89155243630]} {Bob [89167243814]}]
