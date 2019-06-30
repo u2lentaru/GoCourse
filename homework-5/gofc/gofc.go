@@ -11,6 +11,8 @@ func main() {
 	srcptr := flag.String("src", "", "source file")
 	dstptr := flag.String("dst", "", "destination file")
 
+	flag.Parse()
+
 	fmt.Println("flags", *srcptr, *dstptr)
 
 	content, err := ioutil.ReadFile(*srcptr)
