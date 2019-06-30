@@ -16,13 +16,15 @@ func main() {
 	rwCSV()
 }
 
-//2. Выбор открываемого файла, IsDir(). Выводить количество прочитанных байт, проверить кириллический текст.
+//2. Добавлены выбор открываемого файла, печать ошибок, проверка IsDir().
 func fileRead() {
 	fr := ""
+	fmt.Println("Enter file name for reading:")
 	fmt.Scanln(&fr)
 
 	file, err := os.Open(fr)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	defer file.Close()
@@ -30,11 +32,12 @@ func fileRead() {
 	//getting size of file
 	stat, err := file.Stat()
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 
 	if stat.IsDir() {
-		fmt.Println(stat.Name(), "является директорией.")
+		fmt.Println(stat.Name(), "is a directory.")
 		return
 	}
 
@@ -42,6 +45,7 @@ func fileRead() {
 	bs := make([]byte, stat.Size())
 	_, err = file.Read(bs)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	fmt.Println(string(bs))
