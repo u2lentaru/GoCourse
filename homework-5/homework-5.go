@@ -50,6 +50,7 @@ func fileRead() {
 	fmt.Println(string(bs))
 }
 
+//Запись и чтение csv-файла.
 func rwCSV() {
 	records := [][]string{
 		{"name", "phone"},
@@ -86,12 +87,21 @@ func rwCSV() {
 
 	if err != nil {
 		fmt.Println(err)
-		os.Exit(1)
+		return
 	}
 
-	// sanity check, display to standard output
 	for _, each := range rawCSVdata {
-		fmt.Printf("%s and %s\n", each[0], each[1])
+		fmt.Printf("%s : %s\n", each[0], each[1])
 	}
 
 }
+
+//Enter file name for reading:
+//test.txt
+//test
+//тест
+//1234567890
+//name : phone
+//Bob : 89167243814
+//Alex : 89155243629
+//Mike : 89167245643
