@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -15,7 +16,7 @@ func main() {
 	rwCSV()
 }
 
-//2. Добавлены выбор открываемого файла, печать ошибок, проверка IsDir().
+//2. Добавлены буферизация чтения по 256 байт, выбор открываемого файла, печать ошибок, проверка IsDir().
 func fileRead() {
 	fr := ""
 	fmt.Println("Enter file name for reading:")
@@ -28,7 +29,6 @@ func fileRead() {
 	}
 	defer file.Close()
 
-	//getting size of file
 	stat, err := file.Stat()
 	if err != nil {
 		fmt.Println(err)
@@ -41,13 +41,15 @@ func fileRead() {
 	}
 
 	//reading file
-	bs := make([]byte, stat.Size())
-	_, err = file.Read(bs)
-	if err != nil {
-		fmt.Println(err)
-		return
+	//bs := make([]byte, stat.Size())
+	bs := make([]byte, 256)
+	for {
+		n, err := file.Read(bs)
+		if err == io.EOF {
+			break
+		}
+		fmt.Println(string(bs[:n]))
 	}
-	fmt.Println(string(bs))
 }
 
 //Запись и чтение csv-файла.
