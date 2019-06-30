@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	query := os.Args[0]
-	root := os.Args[1]
+	query := os.Args[1]
+	root := os.Args[2]
 
 	//arg := os.Args[3]
 
