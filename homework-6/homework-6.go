@@ -14,7 +14,7 @@ import (
 func main() {
 	pkgImg()
 	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/",fs)
+	http.Handle("/", fs)
 	http.HandleFunc("/helloGET", helloGET)
 	http.ListenAndServe(":80", nil)
 }
@@ -42,6 +42,7 @@ func pkgImg() {
 
 func helloGET(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-Type", "text/html")
+	getName := req.URL.Query().Get("name")
 	io.WriteString(res,
 		`<doctype html>
 		<html>
@@ -49,6 +50,9 @@ func helloGET(res http.ResponseWriter, req *http.Request) {
 		</head>
 		<body>
 		Hello World!
-		</body>
-		</html>`)
+		<br>`)
+	io.WriteString(res, getName)
+	io.WriteString(res, `</body>
+	</html>`)
+
 }
