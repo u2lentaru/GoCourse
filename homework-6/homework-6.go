@@ -33,3 +33,6 @@ func pkgImg() {
 	defer file.Close()
 	png.Encode(file, rectImg)
 }
+func helloGET() {
+	
+}
