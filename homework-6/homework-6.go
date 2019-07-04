@@ -50,9 +50,6 @@ func helloGET(res http.ResponseWriter, req *http.Request) {
 		</head>
 		<body>
 		Hello World!
-		<br>`)
-	io.WriteString(res, getName)
-	io.WriteString(res, `</body>
-	</html>`)
-
+		<br>`+getName+`</body>
+		</html>`)
 }
