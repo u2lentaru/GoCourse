@@ -17,3 +17,8 @@ func TestSumxs(t *testing.T) {
 		t.Error("Expected 3 got ", v)
 	}
 }
+
+//Running tool: C:\Go\bin\go.exe test -timeout 30s GoCourse\homework-6\statistic -run ^(TestSumxs)$
+//
+//ok  	GoCourse/homework-6/statistic	(cached)
+//Success: Tests passed.
