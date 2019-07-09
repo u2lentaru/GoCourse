@@ -13,7 +13,7 @@ func main() {
 func spinner(delay time.Duration) {
 	for {
 		for _, r := range "-\\|/" {
-			fmt.Printf("%c", r)
+			fmt.Printf("%c\r", r)
 			time.Sleep(delay)
 		}
 	}
