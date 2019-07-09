@@ -7,6 +7,8 @@ import (
 
 func main() {
 	go spinner(50 * time.Millisecond)
+
+	//wait 10 seconds
 	time.Sleep(10 * time.Second)
 }
 
