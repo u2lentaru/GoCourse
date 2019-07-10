@@ -10,6 +10,9 @@ func main() {
 
 	//wait 10 seconds
 	time.Sleep(10 * time.Second)
+
+	//conveyor
+	conveyor()
 }
 
 func spinner(delay time.Duration) {
@@ -18,5 +21,27 @@ func spinner(delay time.Duration) {
 			fmt.Printf("%c\r", r)
 			time.Sleep(delay)
 		}
+	}
+}
+
+func conveyor() {
+	naturals := make(chan int)
+	squares := make(chan int)
+
+	go func() {
+		for x := 0; ; x++ {
+			naturals <- x
+		}
+	}()
+
+	go func() {
+		for {
+			x := <-naturals
+			squares <- x * x
+		}
+	}()
+
+	for {
+		fmt.Println(<-squares)
 	}
 }
