@@ -49,11 +49,7 @@ func conveyor() {
 		close(squares)
 	}()
 
-	for {
-		y, ok := <-squares
-		if !ok {
-			break
-		}
+	for y := range squares {
 		fmt.Println(y)
 	}
 }
