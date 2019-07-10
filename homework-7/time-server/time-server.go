@@ -1,13 +1,21 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
+	"os"
 	"time"
 )
 
 func main() {
+	cancel := make(chan int)
+	go func() {
+		os.Stdin.Read(make([]byte, 1))
+		cancel <- 1
+	}()
+
 	listener, err := net.Listen("tcp", "localhost:8000")
 	if err != nil {
 		log.Fatal(err)
@@ -19,6 +27,12 @@ func main() {
 			continue
 		}
 		go handleConn(conn)
+
+		select {
+		case <-cancel:
+			fmt.Println("cancelled")
+			return
+		}
 	}
 }
 
