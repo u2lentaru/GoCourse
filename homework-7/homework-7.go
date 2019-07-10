@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
+	//	a := 1
+	//	if a == 0 {
 	go spinner(50 * time.Millisecond)
+	//	}
 
 	//wait 10 seconds
 	time.Sleep(10 * time.Second)
@@ -29,19 +32,28 @@ func conveyor() {
 	squares := make(chan int)
 
 	go func() {
-		for x := 0; ; x++ {
+		for x := 0; x <= 100; x++ {
 			naturals <- x
 		}
+		close(naturals)
 	}()
 
 	go func() {
 		for {
-			x := <-naturals
+			x, ok := <-naturals
+			if !ok {
+				break
+			}
 			squares <- x * x
 		}
+		close(squares)
 	}()
 
 	for {
-		fmt.Println(<-squares)
+		y, ok := <-squares
+		if !ok {
+			break
+		}
+		fmt.Println(y)
 	}
 }
