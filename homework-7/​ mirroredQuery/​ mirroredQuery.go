@@ -19,8 +19,9 @@ func mirroredQuery() string {
 		responses <- request("america.site.io")
 	}()
 
+	return
 }
 
 func request(hostname string) string {
-
+	return
 }
