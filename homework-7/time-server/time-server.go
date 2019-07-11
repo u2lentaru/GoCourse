@@ -9,17 +9,19 @@ import (
 	"time"
 )
 
+type message []byte
+
 func main() {
-	cancel := make(chan int)
-	go func() {
-		os.Stdin.Read(make([]byte, 1))
-		cancel <- 1
-	}()
+	var kbdin string
+	//cancel := make(chan string)
+	//tick := make(<-chan time.Time)
+	//tick = time.Tick(1 * time.Second)
 
 	listener, err := net.Listen("tcp", "localhost:8000")
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -28,11 +30,24 @@ func main() {
 		}
 		go handleConn(conn)
 
-		select {
-		case <-cancel:
-			fmt.Println("cancelled")
-			return
-		}
+		go func() {
+			for {
+				fmt.Println("Type 'exit' for exit")
+				fmt.Scanln(&kbdin)
+				if kbdin == "exit" {
+					//	cancel <- kbdin
+					os.Exit(0)
+				}
+			}
+		}()
+
+		//select {
+		//case <-cancel:
+		//	return
+		//	case <-tick:
+		//		continue
+		//}
+
 	}
 }
 
