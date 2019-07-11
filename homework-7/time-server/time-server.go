@@ -29,7 +29,8 @@ func main() {
 			continue
 		}
 		go handleConn(conn)
-
+		//При испльзовании select для выхода из программы time-сервер перестаёт быть параллельным.
+		//Второе и последующие подключения не работают.
 		go func() {
 			for {
 				fmt.Println("Type 'exit' for exit")
