@@ -16,6 +16,18 @@ func main() {
 	//cancel := make(chan string)
 	//tick := make(<-chan time.Time)
 	//tick = time.Tick(1 * time.Second)
+	//При испльзовании select для выхода из программы time-сервер перестаёт быть параллельным.
+	//Второе и последующие подключения к time-серверу не работают.
+	go func() {
+		for {
+			fmt.Println("Type 'exit' for exit")
+			fmt.Scanln(&kbdin)
+			if kbdin == "exit" {
+				//	cancel <- kbdin
+				os.Exit(0)
+			}
+		}
+	}()
 
 	listener, err := net.Listen("tcp", "localhost:8000")
 	if err != nil {
@@ -29,25 +41,13 @@ func main() {
 			continue
 		}
 		go handleConn(conn)
-		//При испльзовании select для выхода из программы time-сервер перестаёт быть параллельным.
-		//Второе и последующие подключения не работают.
-		go func() {
-			for {
-				fmt.Println("Type 'exit' for exit")
-				fmt.Scanln(&kbdin)
-				if kbdin == "exit" {
-					//	cancel <- kbdin
-					os.Exit(0)
-				}
-			}
-		}()
 
-		//select {
-		//case <-cancel:
-		//	return
+		//	select {
+		//	case <-cancel:
+		//		return
 		//	case <-tick:
 		//		continue
-		//}
+		//	}
 
 	}
 }
