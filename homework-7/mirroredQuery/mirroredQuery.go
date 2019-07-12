@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 )
@@ -13,23 +14,33 @@ func mirroredQuery() string {
 	responses := make(chan string, 3)
 
 	go func() {
-		responses <- request("asia.site.io")
+		responses <- request("golang.org")
 	}()
 
 	go func() {
-		responses <- request("europe.site.io")
+		responses <- request("google.com")
 	}()
 
 	go func() {
-		responses <- request("america.site.io")
+		responses <- request("ya.ru")
 	}()
 
-	return <-responses
+	time.Sleep(10 * time.Second)
+
+	//for tr := range responses {
+	//	fmt.Println(tr)
+	//}
+	close(responses)
+
+	return ""
 }
 
 func request(hostname string) string {
 	start := time.Now()
+	fmt.Println(hostname + " start " + start.String())
 	http.Get(hostname)
 	end := time.Now()
-	return string(end.Sub(start))
+	fmt.Println(hostname + " end " + end.String())
+	fmt.Println(hostname + " " + end.Sub(start).String())
+	return hostname + end.Sub(start).String()
 }
