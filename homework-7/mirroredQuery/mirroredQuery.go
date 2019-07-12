@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -11,21 +12,29 @@ func main() {
 }
 
 func mirroredQuery() string {
+	var wg sync.WaitGroup
 	responses := make(chan string, 3)
 
 	go func() {
+		wg.Add(1)
+		defer wg.Done()
 		responses <- request("golang.org")
 	}()
 
 	go func() {
+		wg.Add(1)
+		defer wg.Done()
 		responses <- request("google.com")
 	}()
 
 	go func() {
+		wg.Add(1)
+		defer wg.Done()
 		responses <- request("ya.ru")
 	}()
 
-	time.Sleep(10 * time.Second)
+	wg.Wait()
+	//	time.Sleep(10 * time.Second)
 
 	//for tr := range responses {
 	//	fmt.Println(tr)
