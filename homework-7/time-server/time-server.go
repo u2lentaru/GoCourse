@@ -13,7 +13,7 @@ type message []byte
 
 func main() {
 	var kbdin string
-	//cancel := make(chan string)
+	//cancel := make(chan string, 3)
 
 	//При использовании select для выхода из программы time-сервер перестаёт быть параллельным.
 	//Второе и последующие подключения к time-серверу не работают.
@@ -43,11 +43,10 @@ func main() {
 		}
 		go handleConn(conn)
 
-		//	select {
-		//	case <-cancel:
-		//		return
-		//	}
-
+		//select {
+		//case <-cancel:
+		//	return
+		//}
 	}
 }
 
