@@ -7,55 +7,52 @@ import (
 	"time"
 )
 
+var wg sync.WaitGroup
+
 func main() {
 	mirroredQuery()
 }
 
 func mirroredQuery() {
-	var wg sync.WaitGroup
+	//var wg sync.WaitGroup
 	responses := make(chan string, 3)
 
 	go func() {
-		wg.Add(1)
-		defer wg.Done()
-		responses <- request("golang.org")
+		responses <- request("geekbrains.ru")
 	}()
 
 	go func() {
-		wg.Add(1)
-		defer wg.Done()
-		responses <- request("google.com")
+		responses <- request("r0.ru")
 	}()
 
 	go func() {
-		wg.Add(1)
-		defer wg.Done()
 		responses <- request("ya.ru")
 	}()
 
+	//time.Sleep(10 * time.Second)
 	wg.Wait()
-	//close(responses)
-	time.Sleep(10 * time.Second)
 
-	//for tr, ok := range responses {
 	for {
 		tr, ok := <-responses
 		if !ok {
+			close(responses)
 			break
 		}
+
 		fmt.Println(tr)
 	}
-	close(responses)
 
 	return
 }
 
 func request(hostname string) string {
+	wg.Add(1)
+	defer wg.Done()
 	start := time.Now()
-	//fmt.Println(hostname + " start " + start.String())
-	http.Get(hostname)
+	_, err := http.Get(hostname)
+	if err != nil {
+		fmt.Println(err)
+	}
 	end := time.Now()
-	//fmt.Println(hostname + " end " + end.String())
-	//fmt.Println(hostname + " " + end.Sub(start).String())
 	return hostname + " response " + end.Sub(start).String()
 }
