@@ -11,7 +11,7 @@ func main() {
 	mirroredQuery()
 }
 
-func mirroredQuery() string {
+func mirroredQuery() {
 	var wg sync.WaitGroup
 	responses := make(chan string, 3)
 
@@ -34,22 +34,28 @@ func mirroredQuery() string {
 	}()
 
 	wg.Wait()
-	//	time.Sleep(10 * time.Second)
+	//close(responses)
+	time.Sleep(10 * time.Second)
 
-	//for tr := range responses {
-	//	fmt.Println(tr)
-	//}
+	//for tr, ok := range responses {
+	for {
+		tr, ok := <-responses
+		if !ok {
+			break
+		}
+		fmt.Println(tr)
+	}
 	close(responses)
 
-	return ""
+	return
 }
 
 func request(hostname string) string {
 	start := time.Now()
-	fmt.Println(hostname + " start " + start.String())
+	//fmt.Println(hostname + " start " + start.String())
 	http.Get(hostname)
 	end := time.Now()
-	fmt.Println(hostname + " end " + end.String())
-	fmt.Println(hostname + " " + end.Sub(start).String())
-	return hostname + end.Sub(start).String()
+	//fmt.Println(hostname + " end " + end.String())
+	//fmt.Println(hostname + " " + end.Sub(start).String())
+	return hostname + " response " + end.Sub(start).String()
 }
