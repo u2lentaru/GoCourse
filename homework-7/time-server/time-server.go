@@ -14,10 +14,11 @@ type message []byte
 func main() {
 	var kbdin string
 	//cancel := make(chan string)
-	//tick := make(<-chan time.Time)
-	//tick = time.Tick(1 * time.Second)
+
 	//При испльзовании select для выхода из программы time-сервер перестаёт быть параллельным.
 	//Второе и последующие подключения к time-серверу не работают.
+	//При использовании os.Exit(0) time-сервер рабоьтает в многозадачном режиме.
+
 	go func() {
 		for {
 			fmt.Println("Type 'exit' for exit")
@@ -45,8 +46,6 @@ func main() {
 		//	select {
 		//	case <-cancel:
 		//		return
-		//	case <-tick:
-		//		continue
 		//	}
 
 	}
