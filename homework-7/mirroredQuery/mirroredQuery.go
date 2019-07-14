@@ -18,15 +18,15 @@ func mirroredQuery() {
 	responses := make(chan string, 3)
 
 	go func() {
-		responses <- request("geekbrains.ru")
+		responses <- request("http://geekbrains.ru")
 	}()
 
 	go func() {
-		responses <- request("r0.ru")
+		responses <- request("http://r0.ru")
 	}()
 
 	go func() {
-		responses <- request("ya.ru")
+		responses <- request("http://ya.ru")
 	}()
 
 	//time.Sleep(10 * time.Second)
