@@ -28,12 +28,15 @@ func serial() {
 func serialFetch(url string) {
 	start := time.Now()
 	resp, err := http.Get(url)
+
 	if err != nil {
 		log.Fatal(err)
 	}
 	//bytes,err:=ioutil.ReadAll(resp.Body)
+
 	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
 	resp.Body.Close()
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,9 +47,11 @@ func parallel() {
 	fmt.Println("Parallel")
 	start := time.Now()
 	ch := make(chan string)
+
 	for _, url := range os.Args[1:] {
 		go parallelFetch(url, ch)
 	}
+
 	for range os.Args[1:] {
 		fmt.Print(<-ch)
 	}
@@ -64,6 +69,7 @@ func parallelFetch(url string, ch chan<- string) {
 
 	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
 	resp.Body.Close()
+
 	if err != nil {
 		ch <- fmt.Sprintf("while reading %s: %v", url, err)
 		return
@@ -99,6 +105,7 @@ func parallelFetch(url string, ch chan<- string) {
 //0.61s elapse
 
 //Выводы:
+//
 //Serial 7.13s elapsed
 //Parallel 0.61s elapse
 //Параллельный сканер значительно превосходит последовательный в скорости
@@ -109,3 +116,13 @@ func parallelFetch(url string, ch chan<- string) {
 //1. Индексация сайтов в поисковых системах.
 //2. Поиск уязвимостей в целях проверки безопасности.
 //3. Тестирование работоспособности и производительности сайтов.
+
+//3. Сформулируйте предложения по улучшению сетевого чата.
+//
+//1. Убрать дублирование сообщения для отправителя.
+//2. Добавить возможность передачи файлов.
+//3. Интегрированная VoIP-связь
+//4. Видеоконференцсвязь.
+//5. Интерактивная доска.
+//6. Совместный доступ к экрану или отдельным приложениям.
+//7. Запись хода веб-конференции
