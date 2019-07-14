@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+//run .\homework-8.go http://ya.ru http://r0.ru
 func main() {
 	serial()
 }
