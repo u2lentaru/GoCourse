@@ -97,3 +97,9 @@ func parallelFetch(url string, ch chan<- string) {
 //0.30s  141474 http://yandex.ru
 //0.61s  128104 http://facebook.com
 //0.61s elapse
+
+//Выводы:
+//Serial 7.13s elapsed
+//Parallel 0.61s elapse
+//Параллельный сканер значительно превосходит последовательный в скорости
+//для одинакового количества сканируемых сайтов.
