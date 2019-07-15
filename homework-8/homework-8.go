@@ -33,7 +33,6 @@ func serialFetch(url string) {
 		log.Fatal(err)
 	}
 	//bytes,err:=ioutil.ReadAll(resp.Body)
-
 	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
 	resp.Body.Close()
 
@@ -51,7 +50,6 @@ func parallel() {
 	for _, url := range os.Args[1:] {
 		go parallelFetch(url, ch)
 	}
-
 	for range os.Args[1:] {
 		fmt.Print(<-ch)
 	}
@@ -66,7 +64,6 @@ func parallelFetch(url string, ch chan<- string) {
 		ch <- fmt.Sprint(err)
 		return
 	}
-
 	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
 	resp.Body.Close()
 
@@ -77,6 +74,9 @@ func parallelFetch(url string, ch chan<- string) {
 	ch <- fmt.Sprintf("%.2fs %7d %s\n", time.Since(start).Seconds(), nbytes, url)
 }
 
+//1. Исследуйте работу последовательного и параллельного сканера веб-сайтов, задав большое
+//(не менее 10) количество URL. Какие выводы можно сделать?
+//
 //PS C:\Golang_work\src\GoCourse\homework-8> go run .\homework-8.go http://ya.ru http://yandex.ru http://r0.ru http://rambler.ru
 //http://mail.ru http://geekbrains.ru http://google.com http://vk.com http://ok.ru http://facebook.com
 //Serial
