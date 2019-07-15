@@ -12,6 +12,7 @@ type client chan<- string
 var (
 	entering = make(chan client)
 	leaving  = make(chan client)
+	//	owner    = make(chan client)
 	messages = make(chan string)
 )
 
@@ -38,7 +39,11 @@ func broadcaster() {
 		select {
 		case msg := <-messages:
 			for cli := range clients {
+				//				o := <-owner
+				//				fmt.Println("owner ", o)
+				//				if cli != o {
 				cli <- msg
+				//				}
 			}
 		case cli := <-entering:
 			clients[cli] = true
@@ -51,6 +56,7 @@ func broadcaster() {
 
 func handleConn(conn net.Conn) {
 	ch := make(chan string)
+	//	mown := make(chan string)
 	go clientWriter(conn, ch)
 
 	who := conn.RemoteAddr().String()
@@ -61,6 +67,8 @@ func handleConn(conn net.Conn) {
 	input := bufio.NewScanner(conn)
 	for input.Scan() {
 		messages <- who + ": " + input.Text()
+		//	mown <- "You are " + who
+		//	owner <- mown
 	}
 	leaving <- ch
 	messages <- who + " has left"
