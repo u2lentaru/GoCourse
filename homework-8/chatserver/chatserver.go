@@ -39,9 +39,7 @@ func broadcaster() {
 		select {
 		case msg := <-messages:
 			for cli := range clients {
-				//				o := <-owner
-				//				fmt.Println("owner ", o)
-				//				if cli != o {
+				//	if cli != <-owner {
 				cli <- msg
 				//				}
 			}
