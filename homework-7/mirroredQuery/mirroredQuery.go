@@ -14,7 +14,7 @@ func main() {
 }
 
 func mirroredQuery() {
-	//var wg sync.WaitGroup
+	var wg sync.WaitGroup
 	responses := make(chan string, 3)
 
 	go func() {
